@@ -20,12 +20,14 @@ makeCacheMatrix <- function(x=matrix()){
 
 cacheSolve <-function(x,...){
         m<-x$getSolve()
+# If the cached mean (m) is not null print the message "getting cached data" and then return the cached mean
         if(!is.null(m)){
                 message("getting cached data")
                 return(m)
         }
+# if not cached, then calculate inverse
         data<-x$get()
-        m<-Solve(data,...)
+        m<-solve(data,...)
         x$setSolve(m)
         m
 }
